@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "MyVedioViewController.h"
-
+#import "MyVedioImageViewController.h"
 @interface AppDelegate ()
 
 @end
@@ -19,7 +19,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
     self.window=[[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
-    self.window.rootViewController=[[MyVedioViewController alloc]init];
+    self.window.rootViewController=[[MyVedioImageViewController alloc]init];//[[MyVedioViewController alloc]init];
     [self.window makeKeyAndVisible];
     return YES;
 }

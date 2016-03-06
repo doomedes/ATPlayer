@@ -17,6 +17,8 @@
 		4E3501E21C8A916800032A86 /* ghsy.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4E3501E11C8A916800032A86 /* ghsy.mp3 */; };
 		4E3501E71C8AA0BE00032A86 /* MyVedioViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E3501E51C8AA0BE00032A86 /* MyVedioViewController.m */; };
 		4E3501E81C8AA0BE00032A86 /* MyVedioViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E3501E61C8AA0BE00032A86 /* MyVedioViewController.xib */; };
+		4E7404D81C8C0C01009D0DA5 /* MyVedioImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E7404D61C8C0C01009D0DA5 /* MyVedioImageViewController.m */; };
+		4E7404D91C8C0C01009D0DA5 /* MyVedioImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E7404D71C8C0C01009D0DA5 /* MyVedioImageViewController.xib */; };
 		4E97FB501C8AC341006C29D7 /* ATPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E97FB4F1C8AC341006C29D7 /* ATPlayerView.m */; };
 		4E97FB531C8AE140006C29D7 /* ATPlayerMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E97FB521C8AE140006C29D7 /* ATPlayerMainView.m */; };
 /* End PBXBuildFile section */
@@ -37,6 +39,9 @@
 		4E3501E41C8AA0BE00032A86 /* MyVedioViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyVedioViewController.h; sourceTree = "<group>"; };
 		4E3501E51C8AA0BE00032A86 /* MyVedioViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyVedioViewController.m; sourceTree = "<group>"; };
 		4E3501E61C8AA0BE00032A86 /* MyVedioViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyVedioViewController.xib; sourceTree = "<group>"; };
+		4E7404D51C8C0C01009D0DA5 /* MyVedioImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyVedioImageViewController.h; sourceTree = "<group>"; };
+		4E7404D61C8C0C01009D0DA5 /* MyVedioImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyVedioImageViewController.m; sourceTree = "<group>"; };
+		4E7404D71C8C0C01009D0DA5 /* MyVedioImageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyVedioImageViewController.xib; sourceTree = "<group>"; };
 		4E97FB4E1C8AC341006C29D7 /* ATPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATPlayerView.h; sourceTree = "<group>"; };
 		4E97FB4F1C8AC341006C29D7 /* ATPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATPlayerView.m; sourceTree = "<group>"; };
 		4E97FB511C8AE140006C29D7 /* ATPlayerMainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATPlayerMainView.h; sourceTree = "<group>"; };
@@ -82,13 +87,14 @@
 				4E3501CD1C8A859300032A86 /* ViewController.h */,
 				4E3501CE1C8A859300032A86 /* ViewController.m */,
 				4E3501D01C8A859300032A86 /* Main.storyboard */,
-				4E3501D31C8A859300032A86 /* Assets.xcassets */,
-				4E3501D51C8A859300032A86 /* LaunchScreen.storyboard */,
-				4E3501D81C8A859300032A86 /* Info.plist */,
-				4E3501C71C8A859300032A86 /* Supporting Files */,
 				4E3501E41C8AA0BE00032A86 /* MyVedioViewController.h */,
 				4E3501E51C8AA0BE00032A86 /* MyVedioViewController.m */,
 				4E3501E61C8AA0BE00032A86 /* MyVedioViewController.xib */,
+				4E7404D51C8C0C01009D0DA5 /* MyVedioImageViewController.h */,
+				4E7404D61C8C0C01009D0DA5 /* MyVedioImageViewController.m */,
+				4E7404D71C8C0C01009D0DA5 /* MyVedioImageViewController.xib */,
+				4E3501D31C8A859300032A86 /* Assets.xcassets */,
+				4E3501C71C8A859300032A86 /* Supporting Files */,
 			);
 			path = VedioDemo;
 			sourceTree = "<group>";
@@ -96,6 +102,8 @@
 		4E3501C71C8A859300032A86 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4E3501D51C8A859300032A86 /* LaunchScreen.storyboard */,
+				4E3501D81C8A859300032A86 /* Info.plist */,
 				4E3501C81C8A859300032A86 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -189,6 +197,7 @@
 				4E3501E81C8AA0BE00032A86 /* MyVedioViewController.xib in Resources */,
 				4E3501D71C8A859300032A86 /* LaunchScreen.storyboard in Resources */,
 				4E3501D41C8A859300032A86 /* Assets.xcassets in Resources */,
+				4E7404D91C8C0C01009D0DA5 /* MyVedioImageViewController.xib in Resources */,
 				4E3501D21C8A859300032A86 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -200,6 +209,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E7404D81C8C0C01009D0DA5 /* MyVedioImageViewController.m in Sources */,
 				4E97FB501C8AC341006C29D7 /* ATPlayerView.m in Sources */,
 				4E97FB531C8AE140006C29D7 /* ATPlayerMainView.m in Sources */,
 				4E3501CF1C8A859300032A86 /* ViewController.m in Sources */,
