@@ -52,8 +52,8 @@
     self.player.volume=self.mySlider.value;
 }
 
-
 #pragma mark- AVAudioPlayerDelegate
+
 - (void)audioPlayerBeginInterruption:(AVAudioPlayer *)player {
     [self.player stop];
 }
@@ -61,4 +61,5 @@
 - (void)audioPlayerEndInterruption:(AVAudioPlayer *)player withOptions:(NSUInteger)flags {
     [self.player play];
 }
+
 @end

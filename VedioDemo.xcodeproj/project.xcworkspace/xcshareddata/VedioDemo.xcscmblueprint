@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "860CB709AF8A5E3D0226ED406E7A9DE0449A60FD",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "111AD32BF9B1075EF84238CDE29501205BE1417E" : 0,
+    "860CB709AF8A5E3D0226ED406E7A9DE0449A60FD" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "A7E07316-3118-4BE9-BA10-78E699F57163",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "111AD32BF9B1075EF84238CDE29501205BE1417E" : "",
+    "860CB709AF8A5E3D0226ED406E7A9DE0449A60FD" : "ATPlayer\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "VedioDemo",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "VedioDemo.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/doomedes\/SwitchAnimation.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "111AD32BF9B1075EF84238CDE29501205BE1417E"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/doomedes\/ATPlayer.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "860CB709AF8A5E3D0226ED406E7A9DE0449A60FD"
+    }
+  ]
+}

@@ -19,7 +19,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
     self.window=[[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
-    self.window.rootViewController=[[MyVedioImageViewController alloc]init];//[[MyVedioViewController alloc]init];
+    self.window.rootViewController=[[MyVedioViewController alloc]init];//[[MyVedioImageViewController alloc]init];//
     [self.window makeKeyAndVisible];
     return YES;
 }

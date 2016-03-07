@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E0698031C8D4B5700F72B00 /* ACPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E0698021C8D4B5700F72B00 /* ACPlayer.m */; };
+		4E0698061C8D4DED00F72B00 /* ACPlayerResourceLoaderDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E0698051C8D4DED00F72B00 /* ACPlayerResourceLoaderDelegate.m */; };
+		4E0698091C8D82BD00F72B00 /* ACPlayerResourceConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E0698081C8D82BD00F72B00 /* ACPlayerResourceConnection.m */; };
 		4E3501C91C8A859300032A86 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E3501C81C8A859300032A86 /* main.m */; };
 		4E3501CC1C8A859300032A86 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E3501CB1C8A859300032A86 /* AppDelegate.m */; };
 		4E3501CF1C8A859300032A86 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E3501CE1C8A859300032A86 /* ViewController.m */; };
@@ -24,6 +27,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4E0698011C8D4B5700F72B00 /* ACPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACPlayer.h; sourceTree = "<group>"; };
+		4E0698021C8D4B5700F72B00 /* ACPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACPlayer.m; sourceTree = "<group>"; };
+		4E0698041C8D4DED00F72B00 /* ACPlayerResourceLoaderDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACPlayerResourceLoaderDelegate.h; sourceTree = "<group>"; };
+		4E0698051C8D4DED00F72B00 /* ACPlayerResourceLoaderDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACPlayerResourceLoaderDelegate.m; sourceTree = "<group>"; };
+		4E0698071C8D82BD00F72B00 /* ACPlayerResourceConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACPlayerResourceConnection.h; sourceTree = "<group>"; };
+		4E0698081C8D82BD00F72B00 /* ACPlayerResourceConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACPlayerResourceConnection.m; sourceTree = "<group>"; };
 		4E3501C41C8A859300032A86 /* VedioDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VedioDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E3501C81C8A859300032A86 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4E3501CA1C8A859300032A86 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -60,9 +69,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4E0698001C8D4B3500F72B00 /* ACPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				4E0698011C8D4B5700F72B00 /* ACPlayer.h */,
+				4E0698021C8D4B5700F72B00 /* ACPlayer.m */,
+				4E0698041C8D4DED00F72B00 /* ACPlayerResourceLoaderDelegate.h */,
+				4E0698051C8D4DED00F72B00 /* ACPlayerResourceLoaderDelegate.m */,
+				4E0698071C8D82BD00F72B00 /* ACPlayerResourceConnection.h */,
+				4E0698081C8D82BD00F72B00 /* ACPlayerResourceConnection.m */,
+			);
+			path = ACPlayer;
+			sourceTree = "<group>";
+		};
 		4E3501BB1C8A859300032A86 = {
 			isa = PBXGroup;
 			children = (
+				4E0698001C8D4B3500F72B00 /* ACPlayer */,
 				4E97FB4D1C8AC300006C29D7 /* ATPlayer */,
 				4E3501E31C8A918300032A86 /* vedio */,
 				4E3501E01C8A85A900032A86 /* framework */,
@@ -212,9 +235,12 @@
 				4E7404D81C8C0C01009D0DA5 /* MyVedioImageViewController.m in Sources */,
 				4E97FB501C8AC341006C29D7 /* ATPlayerView.m in Sources */,
 				4E97FB531C8AE140006C29D7 /* ATPlayerMainView.m in Sources */,
+				4E0698061C8D4DED00F72B00 /* ACPlayerResourceLoaderDelegate.m in Sources */,
 				4E3501CF1C8A859300032A86 /* ViewController.m in Sources */,
 				4E3501CC1C8A859300032A86 /* AppDelegate.m in Sources */,
 				4E3501E71C8AA0BE00032A86 /* MyVedioViewController.m in Sources */,
+				4E0698031C8D4B5700F72B00 /* ACPlayer.m in Sources */,
+				4E0698091C8D82BD00F72B00 /* ACPlayerResourceConnection.m in Sources */,
 				4E3501C91C8A859300032A86 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
