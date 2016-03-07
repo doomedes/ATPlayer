@@ -14,24 +14,41 @@
 @property(strong,nonatomic) NSFileHandle * fileHandle;
 @property(copy,nonatomic) NSString * cachePath;
 @property(copy,nonatomic) NSString * savePath;
+
+
 @end
 
 
 @implementation ACPlayerResourceConnection
 
 - (void)startRequestWithUrl:(NSURL *) url startSize:(NSInteger) startSize cachePath:(NSString *) cachePath savePath:(NSString *) savePath {
+   
+    if(self.connection){
+        return;
+    }
+
+//    if(startSize>self.startSize){
+        self.startSize=startSize;
+        self.downSize=0;
     
-    self.startSize=startSize;
-    self.downSize=0;
-    self.cachePath=cachePath;
-    self.savePath=savePath;
-    
-//    NSString *dir=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).lastObject;
-//    NSString *path=[dir stringByAppendingPathComponent:@"cache.mp4"];
+        if([[NSFileManager defaultManager] fileExistsAtPath:self.cachePath]){
+            [[NSFileManager defaultManager]removeItemAtPath:self.cachePath error:nil];
+        }
+        self.cachePath=cachePath;
+        self.savePath=savePath;
+//    }
     
     NSMutableURLRequest *request=[[NSMutableURLRequest alloc]initWithURL:url];
     request.cachePolicy=NSURLRequestReloadIgnoringCacheData;
     request.timeoutInterval=10;
+    
+    if(startSize!=0){
+        NSString *rangeValue=[NSString stringWithFormat:@"Bytes=%ld-%ld",startSize,self.contentLength>0?self.contentLength:NSIntegerMax];
+        [request addValue:rangeValue forHTTPHeaderField:@"Range"];
+    }
+    if(self.connection){
+        [self.connection cancel];
+    }
     self.connection=[NSURLConnection connectionWithRequest:request delegate:self];
     [self.connection start];
 
@@ -42,13 +59,29 @@
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
 
+    NSHTTPURLResponse *httpResponse=(NSHTTPURLResponse *)response;
+    self.mimeType=httpResponse.MIMEType;
+//    NSLog(@"%@",httpResponse.allHeaderFields );
+    self.contentType=[httpResponse.allHeaderFields objectForKey:@"Content-Type"]; 
+    self.contentLength=[[httpResponse.allHeaderFields objectForKey:@"Content-Length"] intValue];
+    if([[NSFileManager defaultManager] fileExistsAtPath:self.cachePath]){
+        [[NSFileManager defaultManager] removeItemAtPath:self.cachePath error:nil];
+    }
+
+    [[NSFileManager defaultManager] createFileAtPath:self.cachePath contents:nil attributes:nil];
     self.fileHandle=[NSFileHandle fileHandleForWritingAtPath:self.cachePath];
+    
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
     [self.fileHandle seekToEndOfFile];
     [self.fileHandle writeData:data];
     self.downSize+=data.length;
+    if(self.delegate){
+        if([self.delegate respondsToSelector:@selector(didReceiveData)]){
+            [self.delegate didReceiveData];
+        }
+    }
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {

@@ -8,10 +8,21 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol ACPlayerResourceConnectionDelegate <NSObject>
+
+- (void) didReceiveData;
+
+@end
+
 @interface ACPlayerResourceConnection : NSObject
 
 @property (assign,nonatomic) NSInteger startSize;
 @property (assign,nonatomic) NSInteger downSize;
+@property(assign,nonatomic) NSInteger contentLength;
+@property(copy,nonatomic) NSString * contentType;
+@property (copy,nonatomic) NSString *mimeType;
+@property (weak,nonatomic) id<ACPlayerResourceConnectionDelegate> delegate;
 
+- (void)startRequestWithUrl:(NSURL *) url startSize:(NSInteger) startSize cachePath:(NSString *) cachePath savePath:(NSString *) savePath ;
 
 @end
