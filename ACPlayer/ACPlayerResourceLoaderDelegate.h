@@ -11,4 +11,9 @@
 
 @interface ACPlayerResourceLoaderDelegate : NSObject<AVAssetResourceLoaderDelegate>
 
+@property(copy,nonatomic) NSString * savePath;
+
+-(NSURL *) convertUrlToCustomUrl:(NSURL *) url ;
+-(NSURL *) backCustomUrlToUrl:(NSURL *) customURL ;
+
 @end

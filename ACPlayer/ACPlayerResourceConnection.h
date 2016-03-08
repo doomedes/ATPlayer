@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <MobileCoreServices/MobileCoreServices.h>
 
 @protocol ACPlayerResourceConnectionDelegate <NSObject>
 

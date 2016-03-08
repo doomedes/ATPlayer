@@ -23,11 +23,6 @@
 
 - (void)startRequestWithUrl:(NSURL *) url startSize:(NSInteger) startSize cachePath:(NSString *) cachePath savePath:(NSString *) savePath {
    
-    if(self.connection){
-        return;
-    }
-
-//    if(startSize>self.startSize){
         self.startSize=startSize;
         self.downSize=0;
     
@@ -36,8 +31,7 @@
         }
         self.cachePath=cachePath;
         self.savePath=savePath;
-//    }
-    
+  
     NSMutableURLRequest *request=[[NSMutableURLRequest alloc]initWithURL:url];
     request.cachePolicy=NSURLRequestReloadIgnoringCacheData;
     request.timeoutInterval=10;
@@ -61,9 +55,23 @@
 
     NSHTTPURLResponse *httpResponse=(NSHTTPURLResponse *)response;
     self.mimeType=httpResponse.MIMEType;
-//    NSLog(@"%@",httpResponse.allHeaderFields );
-    self.contentType=[httpResponse.allHeaderFields objectForKey:@"Content-Type"]; 
-    self.contentLength=[[httpResponse.allHeaderFields objectForKey:@"Content-Length"] intValue];
+   CFStringRef contentTypeRef= UTTypeCreatePreferredIdentifierForTag(kUTTagClassMIMEType, (__bridge CFStringRef)self.mimeType, nil);
+    
+    NSDictionary *dic = (NSDictionary *)[httpResponse allHeaderFields] ;
+    //注意contentType的获取方式 (MIMEType转换为UTI)
+    self.contentType= CFBridgingRelease(contentTypeRef); //[httpResponse.allHeaderFields objectForKey:@"Content-Type"];
+    
+    NSString *content =[dic valueForKey:@"Content-Range"];
+    NSArray *array = [content componentsSeparatedByString:@"/"];
+    NSString *length = array.lastObject;
+    NSUInteger videoLength;
+    if ([length integerValue] == 0) {
+        videoLength = (NSUInteger)httpResponse.expectedContentLength;
+    } else {
+        videoLength = [length integerValue];
+    }
+    self.contentLength=videoLength;
+    
     if([[NSFileManager defaultManager] fileExistsAtPath:self.cachePath]){
         [[NSFileManager defaultManager] removeItemAtPath:self.cachePath error:nil];
     }
