@@ -28,7 +28,6 @@
     if (self) {
         self.url=url;
         [self loadPlayerInfoWithUrl:url];
-
     }
     return self;
 }
@@ -52,7 +51,7 @@
     AVPlayerItem * playerItem=[AVPlayerItem playerItemWithURL:url];
     self.player=[AVPlayer playerWithPlayerItem:playerItem];
     [self.player pause];
-    [self loadPlayerExtenedInfo];
+    [self addObserverWithPlayer];
 }
 
 //切换视频
@@ -65,18 +64,6 @@
     [self.player pause];
     AVPlayerItem * playerItem=[AVPlayerItem playerItemWithURL:url];
     [self.player replaceCurrentItemWithPlayerItem:playerItem];
-    [self loadPlayerExtenedInfo];
-}
-
-//定时获取当前播放进度
--(void) loadPlayerExtenedInfo {
-    __weak typeof (self) weakSelf=self;
-    [self.player addPeriodicTimeObserverForInterval:CMTimeMake(1, 1) queue:dispatch_get_main_queue() usingBlock:^(CMTime time) {
-        weakSelf.currentSecond=CMTimeGetSeconds(time);;
-        if(weakSelf.delegate){
-            [weakSelf.delegate playerCurrentTime:weakSelf.currentSecond];
-        }
-    }];
     [self addObserverWithPlayer];
 }
 
@@ -85,13 +72,21 @@
     //添加状态、缓存的监控
     [self.player.currentItem addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:nil];
     [self.player.currentItem addObserver:self forKeyPath:@"loadedTimeRanges" options:NSKeyValueObservingOptionNew context:nil];
-    
+    //定时获取当前播放进度
+    __weak typeof (self) weakSelf=self;
+    [self.player addPeriodicTimeObserverForInterval:CMTimeMake(1, 1) queue:dispatch_get_main_queue() usingBlock:^(CMTime time) {
+        weakSelf.currentSecond=CMTimeGetSeconds(time);;
+        if(weakSelf.delegate){
+            [weakSelf.delegate playerCurrentTime:weakSelf.currentSecond];
+        }
+    }];
 }
 
 //移除监控
 - (void) removeObserverWithPlayer {
     [self.player.currentItem removeObserver:self forKeyPath:@"status" ];
     [self.player.currentItem removeObserver:self forKeyPath:@"loadedTimeRanges"];
+    [self.player removeTimeObserver:self];
 }
 
 //添加playerLayer

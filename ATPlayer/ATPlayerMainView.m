@@ -28,7 +28,6 @@
 - (ATPlayerView *)playerView {
     if(!_playerView){
         _playerView=[[ATPlayerView alloc]initWithUrl:self.url];
-        
         _playerView.frame=self.frame;
         _playerView.delegate=self;
     }

@@ -22,6 +22,7 @@
 		4E3501E81C8AA0BE00032A86 /* MyVedioViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E3501E61C8AA0BE00032A86 /* MyVedioViewController.xib */; };
 		4E7404D81C8C0C01009D0DA5 /* MyVedioImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E7404D61C8C0C01009D0DA5 /* MyVedioImageViewController.m */; };
 		4E7404D91C8C0C01009D0DA5 /* MyVedioImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E7404D71C8C0C01009D0DA5 /* MyVedioImageViewController.xib */; };
+		4E8BAEEA1CAE8269002DE271 /* ACPlayerCommonType.h in Sources */ = {isa = PBXBuildFile; fileRef = 4E8BAEE91CAE8269002DE271 /* ACPlayerCommonType.h */; };
 		4E97FB501C8AC341006C29D7 /* ATPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E97FB4F1C8AC341006C29D7 /* ATPlayerView.m */; };
 		4E97FB531C8AE140006C29D7 /* ATPlayerMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E97FB521C8AE140006C29D7 /* ATPlayerMainView.m */; };
 /* End PBXBuildFile section */
@@ -51,6 +52,8 @@
 		4E7404D51C8C0C01009D0DA5 /* MyVedioImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyVedioImageViewController.h; sourceTree = "<group>"; };
 		4E7404D61C8C0C01009D0DA5 /* MyVedioImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyVedioImageViewController.m; sourceTree = "<group>"; };
 		4E7404D71C8C0C01009D0DA5 /* MyVedioImageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyVedioImageViewController.xib; sourceTree = "<group>"; };
+		4E8BAEE81CAE7658002DE271 /* ACPlayerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACPlayerDelegate.h; sourceTree = "<group>"; };
+		4E8BAEE91CAE8269002DE271 /* ACPlayerCommonType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACPlayerCommonType.h; sourceTree = "<group>"; };
 		4E97FB4E1C8AC341006C29D7 /* ATPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATPlayerView.h; sourceTree = "<group>"; };
 		4E97FB4F1C8AC341006C29D7 /* ATPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATPlayerView.m; sourceTree = "<group>"; };
 		4E97FB511C8AE140006C29D7 /* ATPlayerMainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATPlayerMainView.h; sourceTree = "<group>"; };
@@ -72,6 +75,8 @@
 		4E0698001C8D4B3500F72B00 /* ACPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				4E8BAEE91CAE8269002DE271 /* ACPlayerCommonType.h */,
+				4E8BAEE81CAE7658002DE271 /* ACPlayerDelegate.h */,
 				4E0698011C8D4B5700F72B00 /* ACPlayer.h */,
 				4E0698021C8D4B5700F72B00 /* ACPlayer.m */,
 				4E0698041C8D4DED00F72B00 /* ACPlayerResourceLoaderDelegate.h */,
@@ -105,17 +110,8 @@
 		4E3501C61C8A859300032A86 /* VedioDemo */ = {
 			isa = PBXGroup;
 			children = (
-				4E3501CA1C8A859300032A86 /* AppDelegate.h */,
-				4E3501CB1C8A859300032A86 /* AppDelegate.m */,
-				4E3501CD1C8A859300032A86 /* ViewController.h */,
-				4E3501CE1C8A859300032A86 /* ViewController.m */,
-				4E3501D01C8A859300032A86 /* Main.storyboard */,
-				4E3501E41C8AA0BE00032A86 /* MyVedioViewController.h */,
-				4E3501E51C8AA0BE00032A86 /* MyVedioViewController.m */,
-				4E3501E61C8AA0BE00032A86 /* MyVedioViewController.xib */,
-				4E7404D51C8C0C01009D0DA5 /* MyVedioImageViewController.h */,
-				4E7404D61C8C0C01009D0DA5 /* MyVedioImageViewController.m */,
-				4E7404D71C8C0C01009D0DA5 /* MyVedioImageViewController.xib */,
+				4E8BAEE71CAE6136002DE271 /* vedio */,
+				4E8BAEE61CAE6126002DE271 /* music */,
 				4E3501D31C8A859300032A86 /* Assets.xcassets */,
 				4E3501C71C8A859300032A86 /* Supporting Files */,
 			);
@@ -125,6 +121,8 @@
 		4E3501C71C8A859300032A86 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4E3501CA1C8A859300032A86 /* AppDelegate.h */,
+				4E3501CB1C8A859300032A86 /* AppDelegate.m */,
 				4E3501D51C8A859300032A86 /* LaunchScreen.storyboard */,
 				4E3501D81C8A859300032A86 /* Info.plist */,
 				4E3501C81C8A859300032A86 /* main.m */,
@@ -146,6 +144,29 @@
 				4E3501E11C8A916800032A86 /* ghsy.mp3 */,
 			);
 			path = vedio;
+			sourceTree = "<group>";
+		};
+		4E8BAEE61CAE6126002DE271 /* music */ = {
+			isa = PBXGroup;
+			children = (
+				4E3501E41C8AA0BE00032A86 /* MyVedioViewController.h */,
+				4E3501E51C8AA0BE00032A86 /* MyVedioViewController.m */,
+				4E3501E61C8AA0BE00032A86 /* MyVedioViewController.xib */,
+				4E7404D51C8C0C01009D0DA5 /* MyVedioImageViewController.h */,
+				4E7404D61C8C0C01009D0DA5 /* MyVedioImageViewController.m */,
+				4E7404D71C8C0C01009D0DA5 /* MyVedioImageViewController.xib */,
+			);
+			name = music;
+			sourceTree = "<group>";
+		};
+		4E8BAEE71CAE6136002DE271 /* vedio */ = {
+			isa = PBXGroup;
+			children = (
+				4E3501CD1C8A859300032A86 /* ViewController.h */,
+				4E3501CE1C8A859300032A86 /* ViewController.m */,
+				4E3501D01C8A859300032A86 /* Main.storyboard */,
+			);
+			name = vedio;
 			sourceTree = "<group>";
 		};
 		4E97FB4D1C8AC300006C29D7 /* ATPlayer */ = {
@@ -241,6 +262,7 @@
 				4E3501E71C8AA0BE00032A86 /* MyVedioViewController.m in Sources */,
 				4E0698031C8D4B5700F72B00 /* ACPlayer.m in Sources */,
 				4E0698091C8D82BD00F72B00 /* ACPlayerResourceConnection.m in Sources */,
+				4E8BAEEA1CAE8269002DE271 /* ACPlayerCommonType.h in Sources */,
 				4E3501C91C8A859300032A86 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
