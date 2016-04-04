@@ -25,6 +25,10 @@
 		4E8BAEEA1CAE8269002DE271 /* ACPlayerCommonType.h in Sources */ = {isa = PBXBuildFile; fileRef = 4E8BAEE91CAE8269002DE271 /* ACPlayerCommonType.h */; };
 		4E97FB501C8AC341006C29D7 /* ATPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E97FB4F1C8AC341006C29D7 /* ATPlayerView.m */; };
 		4E97FB531C8AE140006C29D7 /* ATPlayerMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E97FB521C8AE140006C29D7 /* ATPlayerMainView.m */; };
+		4E9F7EBD1CAEC1A00058B7FD /* CAStateButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E9F7EBC1CAEC1A00058B7FD /* CAStateButton.m */; };
+		4E9F7EC01CAEC1D40058B7FD /* ProgressBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E9F7EBF1CAEC1D40058B7FD /* ProgressBarView.m */; };
+		4EBC635C1CB2325800849527 /* ACPlayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EBC635B1CB2325800849527 /* ACPlayerManager.m */; };
+		4EFFE2611CAFBB2D00DF6F7F /* ProgressBarPointView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EFFE2601CAFBB2D00DF6F7F /* ProgressBarPointView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +62,16 @@
 		4E97FB4F1C8AC341006C29D7 /* ATPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATPlayerView.m; sourceTree = "<group>"; };
 		4E97FB511C8AE140006C29D7 /* ATPlayerMainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATPlayerMainView.h; sourceTree = "<group>"; };
 		4E97FB521C8AE140006C29D7 /* ATPlayerMainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATPlayerMainView.m; sourceTree = "<group>"; };
+		4E9F7EBB1CAEC1A00058B7FD /* CAStateButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAStateButton.h; sourceTree = "<group>"; };
+		4E9F7EBC1CAEC1A00058B7FD /* CAStateButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAStateButton.m; sourceTree = "<group>"; };
+		4E9F7EBE1CAEC1D40058B7FD /* ProgressBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressBarView.h; sourceTree = "<group>"; };
+		4E9F7EBF1CAEC1D40058B7FD /* ProgressBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressBarView.m; sourceTree = "<group>"; };
+		4EBC63591CB1584700849527 /* ProgressBarViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressBarViewDelegate.h; sourceTree = "<group>"; };
+		4EBC635A1CB2325800849527 /* ACPlayerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACPlayerManager.h; sourceTree = "<group>"; };
+		4EBC635B1CB2325800849527 /* ACPlayerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACPlayerManager.m; sourceTree = "<group>"; };
+		4EFFE25F1CAFBB2D00DF6F7F /* ProgressBarPointView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressBarPointView.h; sourceTree = "<group>"; };
+		4EFFE2601CAFBB2D00DF6F7F /* ProgressBarPointView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressBarPointView.m; sourceTree = "<group>"; };
+		4EFFE2621CB017E000DF6F7F /* ProgressBarPointViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressBarPointViewDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,10 +89,13 @@
 		4E0698001C8D4B3500F72B00 /* ACPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				4E9F7EBA1CAEC13D0058B7FD /* UIControl */,
 				4E8BAEE91CAE8269002DE271 /* ACPlayerCommonType.h */,
 				4E8BAEE81CAE7658002DE271 /* ACPlayerDelegate.h */,
 				4E0698011C8D4B5700F72B00 /* ACPlayer.h */,
 				4E0698021C8D4B5700F72B00 /* ACPlayer.m */,
+				4EBC635A1CB2325800849527 /* ACPlayerManager.h */,
+				4EBC635B1CB2325800849527 /* ACPlayerManager.m */,
 				4E0698041C8D4DED00F72B00 /* ACPlayerResourceLoaderDelegate.h */,
 				4E0698051C8D4DED00F72B00 /* ACPlayerResourceLoaderDelegate.m */,
 				4E0698071C8D82BD00F72B00 /* ACPlayerResourceConnection.h */,
@@ -93,9 +110,9 @@
 				4E0698001C8D4B3500F72B00 /* ACPlayer */,
 				4E97FB4D1C8AC300006C29D7 /* ATPlayer */,
 				4E3501E31C8A918300032A86 /* vedio */,
-				4E3501E01C8A85A900032A86 /* framework */,
 				4E3501C61C8A859300032A86 /* VedioDemo */,
 				4E3501C51C8A859300032A86 /* Products */,
+				4E3501E01C8A85A900032A86 /* framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -149,12 +166,9 @@
 		4E8BAEE61CAE6126002DE271 /* music */ = {
 			isa = PBXGroup;
 			children = (
-				4E3501E41C8AA0BE00032A86 /* MyVedioViewController.h */,
-				4E3501E51C8AA0BE00032A86 /* MyVedioViewController.m */,
-				4E3501E61C8AA0BE00032A86 /* MyVedioViewController.xib */,
-				4E7404D51C8C0C01009D0DA5 /* MyVedioImageViewController.h */,
-				4E7404D61C8C0C01009D0DA5 /* MyVedioImageViewController.m */,
-				4E7404D71C8C0C01009D0DA5 /* MyVedioImageViewController.xib */,
+				4E3501CD1C8A859300032A86 /* ViewController.h */,
+				4E3501CE1C8A859300032A86 /* ViewController.m */,
+				4E3501D01C8A859300032A86 /* Main.storyboard */,
 			);
 			name = music;
 			sourceTree = "<group>";
@@ -162,9 +176,12 @@
 		4E8BAEE71CAE6136002DE271 /* vedio */ = {
 			isa = PBXGroup;
 			children = (
-				4E3501CD1C8A859300032A86 /* ViewController.h */,
-				4E3501CE1C8A859300032A86 /* ViewController.m */,
-				4E3501D01C8A859300032A86 /* Main.storyboard */,
+				4E3501E41C8AA0BE00032A86 /* MyVedioViewController.h */,
+				4E3501E51C8AA0BE00032A86 /* MyVedioViewController.m */,
+				4E3501E61C8AA0BE00032A86 /* MyVedioViewController.xib */,
+				4E7404D51C8C0C01009D0DA5 /* MyVedioImageViewController.h */,
+				4E7404D61C8C0C01009D0DA5 /* MyVedioImageViewController.m */,
+				4E7404D71C8C0C01009D0DA5 /* MyVedioImageViewController.xib */,
 			);
 			name = vedio;
 			sourceTree = "<group>";
@@ -178,6 +195,21 @@
 				4E97FB521C8AE140006C29D7 /* ATPlayerMainView.m */,
 			);
 			path = ATPlayer;
+			sourceTree = "<group>";
+		};
+		4E9F7EBA1CAEC13D0058B7FD /* UIControl */ = {
+			isa = PBXGroup;
+			children = (
+				4E9F7EBB1CAEC1A00058B7FD /* CAStateButton.h */,
+				4E9F7EBC1CAEC1A00058B7FD /* CAStateButton.m */,
+				4E9F7EBE1CAEC1D40058B7FD /* ProgressBarView.h */,
+				4E9F7EBF1CAEC1D40058B7FD /* ProgressBarView.m */,
+				4EBC63591CB1584700849527 /* ProgressBarViewDelegate.h */,
+				4EFFE25F1CAFBB2D00DF6F7F /* ProgressBarPointView.h */,
+				4EFFE2601CAFBB2D00DF6F7F /* ProgressBarPointView.m */,
+				4EFFE2621CB017E000DF6F7F /* ProgressBarPointViewDelegate.h */,
+			);
+			path = UIControl;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -253,12 +285,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4EFFE2611CAFBB2D00DF6F7F /* ProgressBarPointView.m in Sources */,
 				4E7404D81C8C0C01009D0DA5 /* MyVedioImageViewController.m in Sources */,
+				4E9F7EBD1CAEC1A00058B7FD /* CAStateButton.m in Sources */,
 				4E97FB501C8AC341006C29D7 /* ATPlayerView.m in Sources */,
 				4E97FB531C8AE140006C29D7 /* ATPlayerMainView.m in Sources */,
 				4E0698061C8D4DED00F72B00 /* ACPlayerResourceLoaderDelegate.m in Sources */,
 				4E3501CF1C8A859300032A86 /* ViewController.m in Sources */,
+				4EBC635C1CB2325800849527 /* ACPlayerManager.m in Sources */,
 				4E3501CC1C8A859300032A86 /* AppDelegate.m in Sources */,
+				4E9F7EC01CAEC1D40058B7FD /* ProgressBarView.m in Sources */,
 				4E3501E71C8AA0BE00032A86 /* MyVedioViewController.m in Sources */,
 				4E0698031C8D4B5700F72B00 /* ACPlayer.m in Sources */,
 				4E0698091C8D82BD00F72B00 /* ACPlayerResourceConnection.m in Sources */,

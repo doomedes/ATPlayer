@@ -23,7 +23,22 @@
 
 @implementation ACPlayerResourceLoaderDelegate
 
+-(NSString *)cachePath {
+    if(!_cachePath){
+        NSString *dir=NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).lastObject;
+        _cachePath=[dir stringByAppendingPathComponent:@"cache.mp4"];
+    }
+    return _cachePath;
+}
 
+-(NSString *)savePath {
+    if(!_savePath){
+        NSString *dir=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).lastObject;
+        _savePath=[dir stringByAppendingPathComponent:@"save.mp4"];
+        
+    }
+    return _savePath;
+}
 
 - (instancetype)init {
     self = [super init];
@@ -50,36 +65,32 @@
 
 - (BOOL)resourceLoader:(AVAssetResourceLoader *)resourceLoader  shouldWaitForLoadingOfRequestedResource:(AVAssetResourceLoadingRequest *)loadingRequest{
 
-     NSURL *resourceURL = [loadingRequest.request URL];
+    NSURL *resourceURL = [loadingRequest.request URL];
     if([resourceURL.scheme isEqualToString:CustomeUrlSchme]){
-        
+        //将请求存储起来
        [self.arraryLodingRequest addObject:loadingRequest];
         NSURL *url=[self backCustomUrlToUrl:resourceURL];
+        //加载已经下载的数据
         if(self.resourceConnection.downSize>0){
              [self loadingResource];
         }
         
+        //创建一个连接来下载数据（普通的NSURLConnection下载数据的方式，只是下载后的数据需要在改类里面处理）
         if(!self.resourceConnection){
             self.resourceConnection=[[ACPlayerResourceConnection alloc]init];
             self.resourceConnection.delegate=self;
-            NSString *dir=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).lastObject;
-            self.cachePath=[dir stringByAppendingPathComponent:@"cache.mp4"];
-            self.savePath=[dir stringByAppendingPathComponent:@"save.mp4"];
             [self.resourceConnection startRequestWithUrl:url startSize:0 cachePath:self.cachePath savePath:self.savePath];
             
         }else if(loadingRequest.dataRequest.currentOffset>(self.resourceConnection.startSize+self.resourceConnection.downSize)||self.resourceConnection.startSize>loadingRequest.dataRequest.currentOffset){
             [self.resourceConnection startRequestWithUrl:url startSize:loadingRequest.dataRequest.currentOffset cachePath:self.cachePath savePath:self.savePath];
         }
      return YES;
-        
     }
     return NO;
 }
 
 - (void)resourceLoader:(AVAssetResourceLoader *)resourceLoader  didCancelLoadingRequest:(AVAssetResourceLoadingRequest *)loadingRequest{
-
     [self.arraryLodingRequest removeObject:loadingRequest];
-    
 }
 
 - (void) loadingResource {

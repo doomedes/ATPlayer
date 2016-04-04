@@ -15,10 +15,10 @@
 //状态切换时
 -(void)playerStatusChange:(CAPlayerStatus) status;
 
-//更新播放时间
+//更新播放度条
 -(void)playerCurrentTime:(NSTimeInterval) currentTime;
 
-//更新缓冲时间
+//更新缓冲度条
 -(void)playerloadedTime:(NSTimeInterval) loadedTime;
 
 

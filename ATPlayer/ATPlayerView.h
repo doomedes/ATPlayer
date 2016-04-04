@@ -13,7 +13,9 @@
 
 -(void)playerStatusChange:(AVPlayerItemStatus) status;
 
--(void)playerCurrentTime:(CGFloat) currentTime;
+-(void) bufferLoadedScale:(CGFloat) scale;
+
+-(void) playerCurrentTime:(CGFloat) currentTime;
 
 @end
 
@@ -30,6 +32,8 @@
 - (instancetype) initWithUrl:(NSURL *)url;
 
 - (void) relplacePlayerItemWithUrl:(NSURL *)url;
+
+- (void) setCurrentTime:(NSTimeInterval) timeInterval completionHandler:(void (^)(BOOL finished))completionHandler;
 
 - (void)play;
 

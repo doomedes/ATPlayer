@@ -18,7 +18,6 @@
 
 @end
 
-
 @implementation ACPlayerResourceConnection
 
 - (void)startRequestWithUrl:(NSURL *) url startSize:(NSInteger) startSize cachePath:(NSString *) cachePath savePath:(NSString *) savePath {

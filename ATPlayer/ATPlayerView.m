@@ -17,7 +17,9 @@
 
 @end
 
-@implementation ATPlayerView
+@implementation ATPlayerView{
+    BOOL isBufferEmpty;
+}
 
 - (void)setUrl:(NSURL *)url {
     _url=url;
@@ -46,6 +48,12 @@
     }
 }
 
+- (void) setCurrentTime:(NSTimeInterval) timeInterval completionHandler:(void (^)(BOOL finished))completionHandler{
+    [self.player seekToTime:CMTimeMake(timeInterval, 1) completionHandler:^(BOOL finished) {
+        completionHandler(finished);
+    }];
+}
+
 //加载视频
 - (void) loadPlayerInfoWithUrl:(NSURL *)url {
     AVPlayerItem * playerItem=[AVPlayerItem playerItemWithURL:url];
@@ -64,6 +72,7 @@
     [self.player pause];
     AVPlayerItem * playerItem=[AVPlayerItem playerItemWithURL:url];
     [self.player replaceCurrentItemWithPlayerItem:playerItem];
+   // self.player.currentItem.playbackLikelyToKeepUp=YES;
     [self addObserverWithPlayer];
 }
 
@@ -72,6 +81,11 @@
     //添加状态、缓存的监控
     [self.player.currentItem addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:nil];
     [self.player.currentItem addObserver:self forKeyPath:@"loadedTimeRanges" options:NSKeyValueObservingOptionNew context:nil];
+    //缓存不足的监控
+    [self.player.currentItem addObserver:self forKeyPath:@"playbackBufferEmpty" options:NSKeyValueObservingOptionNew context:nil];
+    
+    [self.player.currentItem addObserver:self forKeyPath:@"playbackLikelyToKeepUp" options:NSKeyValueObservingOptionNew context:nil];
+    [self.player.currentItem addObserver:self forKeyPath:@"playbackBufferFull" options:NSKeyValueObservingOptionNew context:nil];
     //定时获取当前播放进度
     __weak typeof (self) weakSelf=self;
     [self.player addPeriodicTimeObserverForInterval:CMTimeMake(1, 1) queue:dispatch_get_main_queue() usingBlock:^(CMTime time) {
@@ -86,6 +100,10 @@
 - (void) removeObserverWithPlayer {
     [self.player.currentItem removeObserver:self forKeyPath:@"status" ];
     [self.player.currentItem removeObserver:self forKeyPath:@"loadedTimeRanges"];
+    [self.player.currentItem removeObserver:self forKeyPath:@"playbackBufferEmpty"];
+    [self.player.currentItem removeObserver:self forKeyPath:@"playbackLikelyToKeepUp"];
+    [self.player.currentItem removeObserver:self forKeyPath:@"playbackBufferFull"];
+    
     [self.player removeTimeObserver:self];
 }
 
@@ -122,6 +140,7 @@
             //不知道原因
             NSLog(@"unkonw:%@",self.player.currentItem.errorLog);
         }
+        NSLog(@"状态变化：%ld",self.player.currentItem.status);
         if(self.delegate){
             [self.delegate playerStatusChange:self.player.currentItem.status];
         }
@@ -131,7 +150,34 @@
         CGFloat startSecond= CMTimeGetSeconds(range.start);
         CGFloat durationSecond=CMTimeGetSeconds(range.duration);
         CGFloat totalDurationSecond=startSecond+durationSecond;//总共缓存时长
+        /*
+         当缓存不足导致不播放时可以通过缓存的数据来判断是否播放
+         （建议：可以设置一个缓存的时间间隔以便流畅的播放）
+         */
+        if(totalDurationSecond>(self.currentSecond+10)&&isBufferEmpty){
+            isBufferEmpty=NO;
+            [self.player play];
+            NSLog(@"缓存充足播放！");
+        }
+        if(self.delegate){
+            if(self.totalSecond!=0){
+             [self.delegate bufferLoadedScale:totalDurationSecond/self.totalSecond];
+            }
+            
+        }
         NSLog(@"缓冲:%lf",totalDurationSecond);
+    }else if([keyPath isEqualToString:@"playbackBufferEmpty"]){
+        NSLog(@"缓存不足avplayer会停止播放!");
+        isBufferEmpty=YES;
+
+        
+    }else if([keyPath isEqualToString:@"playbackBufferFull"]){
+        NSLog(@"缓存充足！");
+        [self.player play];
+    }else if([keyPath isEqualToString:@"playbackLikelyToKeepUp"]){
+        
+        
+        NSLog(@"缓存：%ld",self.player.currentItem.playbackLikelyToKeepUp);
     }
 }
 

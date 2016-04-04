@@ -20,7 +20,33 @@
 @property (strong,nonatomic) ACPlayerResourceLoaderDelegate*  resourceLoaderDelegate;
 @end
 
-@implementation ACPlayer
+@implementation ACPlayer {
+    BOOL isBufferEnough;//缓存是否充足，足够播放
+}
+
+//播放
+- (void)play {
+    if(self.status==StatusReadyToPlay||self.status==StatusPlayPause||self.status==StatusBufferEnough){
+        [self.player play];
+        [self playerStatusChange:StatusInPlaying];
+    }
+}
+
+//暂停
+- (void)pause {
+    if(self.status==StatusInPlaying){
+        [self.player pause];
+        [self playerStatusChange:StatusPlayPause];
+    }
+}
+
+//设置播放时间
+- (void) setCurrentTime:(NSTimeInterval) timeInterval completionHandler:(void (^)(BOOL finished))completionHandler{
+    [self.player seekToTime:CMTimeMake(timeInterval, 1) completionHandler:^(BOOL finished) {
+        completionHandler(finished);
+    }];
+}
+
 
 -(ACPlayerResourceLoaderDelegate *)resourceLoaderDelegate {
     if(!_resourceLoaderDelegate){
@@ -28,6 +54,8 @@
     }
     return _resourceLoaderDelegate;
 }
+
+#pragma mark-相关事件
 
 - (instancetype)initWithUrl:(NSURL *)url {
     self=[super init];
@@ -49,7 +77,9 @@
 - (void)loadInfoWithUrl:(NSURL *)url {
     AVPlayerItem * playerItem=[self createPlayerItemWithUrl:url];
     self.player=[AVPlayer playerWithPlayerItem:playerItem];
-    [self loadPlayer];
+    [self addObserverWithPlayer];
+     self.player.volume=5;//设置声音
+    [self playerStatusChange:StatusInitialize];
     
 }
 
@@ -67,16 +97,14 @@
     [self addObserverWithPlayer];
 }
 
-
 -(void) loadPlayer {
-   
-    [self addObserverWithPlayer];
-    
-    self.player.volume=5;//设置声音
-    self.playerLayer=[AVPlayerLayer playerLayerWithPlayer:self.player];
-    self.playerLayer.frame=[UIScreen mainScreen].bounds;
-    self.playerLayer.videoGravity=AVLayerVideoGravityResizeAspect;
-    [self.layer addSublayer:self.playerLayer];
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        self.playerLayer=[AVPlayerLayer playerLayerWithPlayer:self.player];
+        self.playerLayer.frame=[UIScreen mainScreen].bounds;
+        self.playerLayer.videoGravity=AVLayerVideoGravityResizeAspect;
+        [self.layer addSublayer:self.playerLayer];
+    });
 }
 
 /*
@@ -125,38 +153,71 @@
         Float64 durationSecond=CMTimeGetSeconds(range.duration);
         self.loadedTime=startSecond+durationSecond;//总共缓存时长
         NSLog(@"当前缓冲时间：%fld",self.loadedTime);
-        if(self.delegate){
+        /*
+         当缓存不足导致不播放时可以通过缓存的数据来判断是否播放
+         （建议：可以设置一个缓存的时间间隔以便流畅的播放）
+         */
+        if(self.loadedTime>(self.currentTime+self.cacheTime)&&!isBufferEnough)
+        {
+            isBufferEnough=YES;
+            [self playerStatusChange:StatusBufferEnough];
+            [self play];
+
+        }
+        if(self.delegate&&[self.delegate respondsToSelector:@selector(playerloadedTime:)]){
             [self.delegate playerloadedTime:self.loadedTime];
         }
         
-    }else if ([keyPath isEqualToString:@"status"]){
+    }else if ([keyPath isEqualToString:@"status"]) {
         /*
          状态变化监控
          */
         if (self.player.currentItem.status==AVPlayerItemStatusReadyToPlay) {
-            if(self.isClickPlay){
-                [self.player play];
+           
+            [self loadPlayer];
+            /*
+             time指的就是時間(不是秒),
+             而時間要換算成秒就要看第二個參數timeScale了.
+             timeScale指的是1秒需要由幾個frame構成(可以視為fps),
+             因此真正要表達的時間就會是 time / timeScale 才會是秒.”
+             */
+            CMTime totalTime=  self.player.currentItem.duration;
+            self.totalTime=(CGFloat)totalTime.value/totalTime.timescale;
+            
+            [self playerStatusChange:StatusReadyToPlay];
+            if(self.isAutoPlay){
+                [self play];
             }
         }else if(self.player.currentItem.status==AVPlayerItemStatusFailed){
-            NSLog(@"failed:%@",self.player.error);
+            [self playerStatusChange:StatusFailed];
         }else {
-            NSLog(@"unkown");
+            [self playerStatusChange:StatusUnknown];
         }
         
-        //状态通知
-        if(self.delegate){
-            [self.delegate playerStatusChange:self.player.currentItem.status];
-        }
-        
-    }else if([keyPath isEqualToString:@"playbackBufferEmpty"]){
+    }else if([keyPath isEqualToString:@"playbackBufferEmpty"]) {
         /*
          缓存不足监控（网络慢）
          */
         if(self.player.currentItem.playbackBufferEmpty){
+            //缓存不足＝YES
+            isBufferEnough=NO;
             [self.player pause];//暂停
+            [self playerStatusChange:StatusBufferEmpty];
+        }else{
+            //缓存不足＝NO
+//          [self playerStatusChange:StatusBufferNotEmpty];
         }
         
     }
+}
+
+
+-(void) playerStatusChange:(CAPlayerStatus) status {
+    self.status=status;
+    if(self.delegate&& [self.delegate respondsToSelector:@selector(playerStatusChange:)]){
+              [self.delegate playerStatusChange:status];
+     
+     }
 }
 
 -(void)dealloc {
